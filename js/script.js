@@ -1,54 +1,25 @@
-// const capacidadeTurma = 30;
-// const alunos = [];
+let produtos = []
+let ultimoId = 0;
 
-// const form = document.getElementById('formCadastro');
-// const listaAlunos = document.getElementById('listaAlunos');
-// const mensagem = document.getElementById('mensagem');
-
-// form.addEventListener('submit', function (event) {
-//     event.preventDefault(); 
-
-//     const nome = document.getElementById('nome').value.trim();
-
-//     if (alunos.length < capacidadeTurma) {
-//         alunos.push(nome);
-//         atualizarLista();
-//         document.getElementById('nome').value = ''; 
-//     } else {
-//         mensagem.textContent = 'A turma já atingiu a capacidade máxima de 30 alunos.';
-//         mensagem.style.color = 'red';
-//     }
-// });
-
-// function atualizarLista() {
-//     listaAlunos.innerHTML = ''; 
-//     alunos.forEach(aluno => {
-//         const li = document.createElement('li');
-//         li.textContent = aluno;
-//         listaAlunos.appendChild(li);
-//     });
-//     mensagem.textContent = ''; 
-// }
-
-
-let alunos = []
-
-function createAluno() {
-    if(alunos.length <= 30){
-        let nome = document.getElementById("nome").value
-
-        alunos.push(nome)
-
-        console.log(alunos)
+function createProduto() {
+    if(produtos.length < 3) {
+        ultimoId += 1;
+        let id = ultimoId;
+        let produto = document.getElementById("produto").value
+        let preco = document.getElementById("preco").value
+        let qtde = document.getElementById("qtde").value
+        let produ = {id: id, produto: produto, preco: preco, qtde: qtde}
+        produtos.push(produ)
+        console.log(produtos)
     }
-        else{
-            document.getElementById("cadastrarAluno").disabled = true
-            document.getElementById("msg").innerText =  "Turma lotada!"
-        }
+    else {
+        document.getElementById("cadastrarPeca").disabled = true
+        document.getElementById("msg").innerText = "Cheio!"
+    }
 }
 
-function readAlunos(){
-    for (i = 0; i < alunos.length; i++) {
-        document.getElementById("alunosCadastrados").innerHTML += `<p>${alunos[i]}</p>`
+function readProdutos() {
+    for (i = 0; i < produtos.length; i++) {
+        document.getElementById("pecasCadastradas").innerHTML += `<p>Id do Produto:${produtos[i].id} - Nome Produto:${produtos[i].produto} - Preço do Produto:${produtos[i].preco} - Quantidade no estoque:${produtos[i].qtde}</p>`
     }
 }
